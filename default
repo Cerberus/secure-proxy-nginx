@@ -23,15 +23,15 @@ server {
 		# First attempt to serve request as file, then
 		# as directory, then fall back to displaying a 404.
 		try_files $uri $uri/ =404;
-		# make it secure for http & ws
-		proxy_redirect off;
-  	proxy_pass http://any-server-name;
+
+		# make it secure, pass https => http, wss => ws
+		proxy_redirect off; # no redirect again
+		proxy_pass http://any-server-name;
 		proxy_http_version 1.1;
 		proxy_set_header Upgrade $http_upgrade;
 		proxy_set_header Connection $connection_upgrade;
 	}
 
-	# Certbot
 	# listen [::]:443 ssl ipv6only=on; # managed by Certbot
 	# listen 443 ssl; # managed by Certbot
 	# ssl_certificate /etc/letsencrypt/live/path-to/fullchain.pem; # managed by Certbot
