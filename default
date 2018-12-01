@@ -27,7 +27,6 @@ server {
 		# make it secure, pass https => http, wss => ws
 		proxy_redirect off; # no redirect again
 		proxy_pass http://any-server-name;
-		proxy_http_version 1.1;
 		proxy_set_header Upgrade $http_upgrade;
 		proxy_set_header Connection $connection_upgrade;
 	}
