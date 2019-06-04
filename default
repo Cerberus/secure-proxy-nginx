@@ -30,6 +30,11 @@ server {
 		proxy_set_header Upgrade $http_upgrade;
 		proxy_set_header Connection $connection_upgrade;
 	}
+	
+	# add a second path
+        location /pure {
+                proxy_pass http://app-server;
+        }
 
 	# listen [::]:443 ssl ipv6only=on; # managed by Certbot
 	# listen 443 ssl; # managed by Certbot
